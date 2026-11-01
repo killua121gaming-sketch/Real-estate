@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --obsidian-rgb: 23 25 27;
+  --charcoal-rgb: 41 43 44;
+  --ivory-rgb: 233 227 216;
+  --champagne-rgb: 183 166 138;
+  --walnut-rgb: 89 67 51;
+  --white-rgb: 255 255 255;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: rgb(var(--obsidian-rgb));
+  }
+
+  body {
+    @apply bg-obsidian font-sans text-ivory antialiased;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+  }
+
+  :focus-visible {
+    outline: 1px solid rgb(var(--champagne-rgb));
+    outline-offset: 4px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-sans text-[11px] font-medium uppercase tracking-eyebrow text-champagne;
+  }
+
+  .hairline {
+    @apply border border-champagne/30;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    @apply relative inline-flex min-h-[44px] items-center justify-center gap-2 overflow-hidden border px-6 py-3 text-sm font-medium tracking-wide transition-[color,background-color,border-color,transform] duration-500 ease-lux hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:outline-champagne;
+  }
+
+  .btn-primary::before,
+  .btn-ghost::before {
+    content: '';
+    @apply pointer-events-none absolute inset-0 -translate-x-full transition-transform duration-700 ease-lux;
+    background: linear-gradient(105deg, transparent 30%, rgb(var(--champagne-rgb) / 0.35) 50%, transparent 70%);
+  }
+
+  .btn-primary:hover::before,
+  .btn-ghost:hover::before {
+    @apply translate-x-full;
+  }
+
+  .btn-primary {
+    @apply border-ivory bg-ivory text-obsidian hover:border-champagne hover:bg-champagne;
+  }
+
+  .btn-ghost {
+    @apply border-ivory/60 text-ivory hover:border-champagne hover:text-champagne;
+  }
+
+  .link-underline {
+    @apply relative inline-flex min-h-[44px] items-center;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-2 left-0 h-px w-full origin-right scale-x-0 bg-champagne transition-transform duration-500 ease-lux;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    @apply origin-left scale-x-100;
+  }
+
+  .heading-tint {
+    @apply transition-colors duration-700 ease-lux hover:text-champagne;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-ivory focus:px-4 focus:py-2 focus:text-obsidian;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-kenburns {
+    animation: none !important;
+  }
+}
